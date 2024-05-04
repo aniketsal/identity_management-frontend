@@ -17,9 +17,7 @@ const LoginScreen = () => {
     // Handle login logic here
     console.log('Email:', rollno);
     console.log('Password:', password);
-    dispatch(login_student(rollno,password)).then(() =>{
-      navigation.navigate('user_profile');
-    }).catch();
+    dispatch(login_student(rollno,password,navigation))
   };
 
   const handleForgotPassword = () => {
