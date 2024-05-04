@@ -6,7 +6,7 @@ import { BASE_URL, REGISTER_STUDENT, LOGIN_STUDENT } from "@/constants/Urls";
 import { RootState, AppDispatch } from '@/state/store';
 import { Alert } from 'react-native';
 import { saveToken } from "@/state/reducers/authSlice";
-export const login_student = (rollno: string, password: string) => {
+export const login_student = (rollno: string, password: string) => (dispatch, navigation) =>{
  return async (dispatch: any) => {
     dispatch(setLoading(true));
     const formData = new URLSearchParams();
@@ -23,12 +23,11 @@ export const login_student = (rollno: string, password: string) => {
       if (response.status === 200) {
         console.log(response.data.jwttoken);
         const token = response.data.token;
-
         // Dispatch the saveToken action to save the JWT token in the Redux store
         dispatch(saveToken(token));
-        
-        Alert.alert('Login Successfully!', 'ok');
+        // Alert.alert('Login Successfully!', 'ok');
         console.log("login success");
+        navigation.navigate('user_profile');
         dispatch(clearLogin());
       } else {
         Alert.alert('Invalid password or rollno!', 'Enter correct credentials');
