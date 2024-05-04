@@ -6,7 +6,7 @@ import { BASE_URL, REGISTER_STUDENT, LOGIN_STUDENT } from "@/constants/Urls";
 import { RootState, AppDispatch } from '@/state/store';
 import { Alert } from 'react-native';
 import { saveToken } from "@/state/reducers/authSlice";
-export const login_student = (rollno: string, password: string) => (dispatch, navigation) =>{
+export const login_student = (rollno: string, password: string) =>{
  return async (dispatch: any) => {
     dispatch(setLoading(true));
     const formData = new URLSearchParams();
@@ -27,7 +27,7 @@ export const login_student = (rollno: string, password: string) => (dispatch, na
         dispatch(saveToken(token));
         // Alert.alert('Login Successfully!', 'ok');
         console.log("login success");
-        navigation.navigate('user_profile');
+        // navigation.navigate('user_profile');
         dispatch(clearLogin());
       } else {
         Alert.alert('Invalid password or rollno!', 'Enter correct credentials');
