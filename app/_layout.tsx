@@ -4,6 +4,8 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { Provider } from "react-redux";
+import {store} from ".././state/store"
 
 import { useColorScheme } from '@/components/useColorScheme';
 
@@ -41,7 +43,11 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav />;
+  return (
+    <Provider store={store}>
+      <RootLayoutNav />
+    </Provider>
+  );
 }
 
 function RootLayoutNav() {
