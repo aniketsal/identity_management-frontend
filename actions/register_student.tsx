@@ -15,7 +15,7 @@ import {
 } from "@react-native-google-signin/google-signin";
 
 
-export const register_student = (name: string, rollno: string, email: string,department: string,password:string,mobilenumber:string) =>  {
+export const register_student = (name: string, rollno: string, email: string,department: string,password:string,mobilenumber:string,navigation:any) =>  {
  
   return async (dispatch:any) => {
     dispatch(setLoading(true));
@@ -32,26 +32,6 @@ export const register_student = (name: string, rollno: string, email: string,dep
   console.log(rollno,department,password,mobilenumber);
     try {
       console.log("hit");
-      const response = await axios.post(REGISTER_STUDENT,formData, {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        });
-        console.log(response);
-      if (response.status === 200) {
-        const token = response.data.jwttoken;
-        console.log(token);
-        // Dispatch the saveToken action to save the JWT token in the Redux store
-          dispatch(saveToken(token));
-          console.log(response.data.jwttoken);
-          Alert.alert("registration Successfull");
-          dispatch(clearRegister());
-      } else {
-        console.log("error");
-        Alert.alert("registration failed");
-        dispatch(clearRegister());
-        throw new Error(response?.data || "Error");
-      }
     } catch (error) {
       // console.log(error.message);
       // dispatch(setError(error.message));

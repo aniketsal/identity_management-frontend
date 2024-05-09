@@ -1,9 +1,15 @@
-import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useRef } from 'react';
 
 const AuthPage = () => {
  const navigation = useNavigation();
+
+ useEffect(() => {
+  navigation.setOptions({
+    headerShown: false, // Hide the entire header
+  });
+}, [navigation]);
 
  return (
     <View style={styles.container}>

@@ -12,6 +12,8 @@ import {
  } from "@react-native-google-signin/google-signin";
  import { clearLogin } from "@/state/reducers/loginSlice";
  import { clearRegister } from '@/state/reducers/registerSlice';
+import { useNavigation } from 'expo-router';
+
 
 const ForgotPasswordScreen = () => {
 
@@ -21,9 +23,10 @@ const ForgotPasswordScreen = () => {
       dispatch(clearLogin());
       await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
-    };
+   };
 
 
+   const navigation = useNavigation();
 
     const [newPassword, setNewPassword] = useState('');
     const id = useSelector((state: RootState) => state.register.id);
@@ -32,9 +35,10 @@ const ForgotPasswordScreen = () => {
        console.log('Username:', id);
        console.log('New password:', newPassword);
        logout();
-       dispatch(forgot_password(id,newPassword));
+       dispatch(forgot_password(id,newPassword,navigation));
        // After handling the submission, you might want to clear the inputs or navigate away
        setNewPassword('');
+      //   navigation.navigate('login');
     };
 
    //  useEffect(()=>{},[id])

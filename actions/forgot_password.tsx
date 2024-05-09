@@ -16,7 +16,7 @@ import {
 import { clearLogin } from "@/state/reducers/loginSlice";
 
 
-export const forgot_password = (rollno: string, newpassword:string) =>  {
+export const forgot_password = (rollno: string, newpassword:string,navigation:any) =>  {
   
   return async (dispatch:any) => {
   //console.log('started');
@@ -38,6 +38,7 @@ export const forgot_password = (rollno: string, newpassword:string) =>  {
           Alert.alert("password updated successfully");
           dispatch(clearLogin());
           dispatch(clearRegister());
+          navigation.navigate('login');
       } else {
         console.log("error");
         Alert.alert("failed");
